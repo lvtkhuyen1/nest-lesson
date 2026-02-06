@@ -9,10 +9,10 @@ export class UserController {
     }
     @Get() // -> GET /users
     index() {
-        return [this.userService.getUsers(), this.authService.login()];
+        return [this.userService.getUsers(), this.authService.findAllItems()];
     }
-    
-    @Get() 
+
+    @Get()
     index2(@Query() query: any) {   // localhost:3000/users?keyword=123&category=456
         return {
             keyword: query.keyword,
@@ -21,7 +21,7 @@ export class UserController {
     }
 
     @Get(':id') // -> GET /users/:id    localhost:3000/users/1
-    find (@Param('id') id: string) {
+    find(@Param('id') id: string) {
         return 'user ' + id;
     }
 
@@ -29,9 +29,10 @@ export class UserController {
     create(@Body() body: any) {
         return body;
     }
-   
+
     @Delete() // -> DELETE /users/:id
     delete() {
         return 'delete';
     }
 }
+
